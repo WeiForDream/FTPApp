@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:weiwei="http://schemas.android.com/apk/res/org.weiwei.ftpapp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <org.weiwei.ui.view.TopBar
+        android:id="@+id/id_server_files_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        weiwei:leftBackground="@drawable/back_click"
+        weiwei:titleTextColor="#000"
+        weiwei:titleTextSize="11sp"
+        weiwei:lineBackground="@color/grey"
+        weiwei:lineHeight="1dp" >
+    </org.weiwei.ui.view.TopBar>
+
+    <ListView
+        android:id="@+id/id_activity_server_files_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    </ListView>
+
+</LinearLayout>
