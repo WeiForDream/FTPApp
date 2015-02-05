@@ -33,5 +33,8 @@
     <string name="title_activity_operation">OperationActivity</string>
     <string name="cancel">取消</string>
     <string name="title_activity_picture_storage">PictureStorage</string>
+    <string name="title_activity_more_operation">MoreOperation</string>
+    <string name="title_activity_setting">SettingActivity</string>
+    <string name="title_activity_about">AboutActivity</string>
 
 </resources>

@@ -11,6 +11,10 @@ import org.weiwei.ui.fragment.AppFragment;
 import org.weiwei.ui.fragment.FileFragment;
 import org.weiwei.ui.fragment.PictureFragment;
 import org.weiwei.ui.fragment.VideoFragment;
+import org.weiwei.ui.view.MainViewPager;
+import org.weiwei.ui.view.SlidingMenuLayout;
+
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import android.animation.ObjectAnimator;
 import android.content.ComponentName;
@@ -38,7 +42,7 @@ import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity {
 
-	private ViewPager mViewPager;
+	private MainViewPager mViewPager;
 	private MainAdapter mAdapter;
 	private List<Fragment> mDatas = new ArrayList<Fragment>();
 	private TextView mAppTextView, mPiectureTextView, mVideoTextView,
@@ -48,7 +52,6 @@ public class MainActivity extends FragmentActivity {
 	
 	//底部菜单
 	private ImageView BottomLeftImage,BottomCenterImage,BottomRightImage;
-	
 
 	// 动画
 	private int[] res = { R.id.id_icon_a, R.id.id_icon_b, R.id.id_icon_c,
@@ -66,6 +69,18 @@ public class MainActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+//		SlidingMenu menu = new SlidingMenu(this);
+//        menu.setMode(SlidingMenu.LEFT);
+//        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+//        menu.setShadowWidthRes(R.dimen.shadow_width);
+////        menu.setShadowDrawable(R.drawable.shadow);
+//        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+//        menu.setFadeDegree(0.35f);
+//        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
+//        menu.setMenu(R.layout.sliding_menu);
+		
+
+		
 		myApp = (MyApplication) getApplication();
 		initService();
 		initTabLine();
@@ -116,7 +131,8 @@ public class MainActivity extends FragmentActivity {
 		mPiectureTextView = (TextView) findViewById(R.id.id_title_tv_picture);
 		mVideoTextView = (TextView) findViewById(R.id.id_title_tv_video);
 		mFileTextView = (TextView) findViewById(R.id.id_title_tv_file);
-		mViewPager = (ViewPager) findViewById(R.id.id_main_viewpager);
+		mViewPager = (MainViewPager) findViewById(R.id.id_main_viewpager);
+		
 		AppFragment app = new AppFragment();
 		PictureFragment picture = new PictureFragment();
 		VideoFragment video = new VideoFragment();
@@ -135,6 +151,7 @@ public class MainActivity extends FragmentActivity {
 		BottomRightImage = (ImageView) findViewById(R.id.id_activity_main_bottom_right_image);
 		BottomCenterImage = (ImageView)findViewById(R.id.id_activity_main_bottom_center_image);
 
+//		menu.setOnClickListener(new BottomClickListener());
 		BottomLeftImage.setOnClickListener(new BottomClickListener());
 		BottomRightImage.setOnClickListener(new BottomClickListener());
 		BottomCenterImage.setOnClickListener(new BottomClickListener());
@@ -147,8 +164,10 @@ public class MainActivity extends FragmentActivity {
 		public void onClick(View v) {
 			switch(v.getId()){
 			case R.id.id_activity_main_bottom_left_image:
-				Intent intent1 = new Intent(MainActivity.this,OperationActivity.class);
-				startActivity(intent1);
+//				menu.openMenu();
+//				mViewPager.setCurrentItem(0);
+				Intent intentL = new Intent(MainActivity.this,MoreOperation.class);
+				startActivity(intentL);
 				break;
 			case R.id.id_activity_main_bottom_right_image:
 				Intent intent = new Intent(MainActivity.this,

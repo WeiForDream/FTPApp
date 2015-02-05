@@ -9,7 +9,11 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
-
+/**
+ * 自定义圆形进度条
+ * @author weiwei
+ *
+ */
 public class CirProgress extends View {
 	/**
 	 * 内部图标的宽高

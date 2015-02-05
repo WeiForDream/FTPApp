@@ -57,6 +57,19 @@
             android:name=".PictureStorage"
             android:label="@string/title_activity_picture_storage" >
         </activity>
+        <activity
+            android:name=".MoreOperation"
+            android:label="@string/title_activity_more_operation"
+            android:theme="@style/sliding_menu" >
+        </activity>
+        <activity
+            android:name=".SettingActivity"
+            android:label="@string/title_activity_setting" >
+        </activity>
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/title_activity_about" >
+        </activity>
     </application>
 
 </manifest>
