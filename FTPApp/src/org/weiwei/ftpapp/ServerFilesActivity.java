@@ -2,11 +2,11 @@ package org.weiwei.ftpapp;
 
 import it.sauronsoftware.ftp4j.FTPFile;
 
-import org.weiwei.adapter.ServerFilesAdapter;
 import org.weiwei.application.MyApplication;
 import org.weiwei.ftp.FTPClient;
 import org.weiwei.model.ConServer;
 import org.weiwei.model.Task;
+import org.weiwei.ui.adapter.ServerFilesAdapter;
 import org.weiwei.ui.view.TopBar;
 import org.weiwei.ui.view.TopBar.topbarClickListener;
 

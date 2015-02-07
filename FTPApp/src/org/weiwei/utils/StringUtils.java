@@ -3,6 +3,8 @@ package org.weiwei.utils;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * 字符串处理
@@ -101,5 +103,14 @@ public class StringUtils {
 	public static String getParentDir(String path){
 		File file = new File(path);
 		return file.getParentFile().getName();//获取父文件夹的名称
+	}
+	
+	public static String formatData(long time){
+		SimpleDateFormat sdf= new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+
+		java.util.Date dt = new Date(time);  
+		String sDateTime = sdf.format(dt);  //得到精确到秒的表示：08/31/2006 21:08:00
+		return sDateTime;
+		
 	}
 }

@@ -1,9 +1,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/id_more_op_ll"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
     <LinearLayout
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -12,7 +14,7 @@
         android:orientation="vertical" >
 
         <RelativeLayout
-            android:id="@+id/relativeLayout1"
+            android:id="@+id/id_more_op_my_phone"
             android:layout_width="250dp"
             android:layout_height="80dp" >
 
@@ -43,10 +45,9 @@
         </ImageView>
 
         <RelativeLayout
-            android:id="@+id/relativeLayout2"
+            android:id="@+id/id_more_op_connect_pc"
             android:layout_width="250dp"
             android:layout_height="80dp"
-            android:layout_marginTop="5dp"
             android:background="@drawable/click_background" >
 
             <ImageView
@@ -76,10 +77,9 @@
         </ImageView>
 
         <RelativeLayout
-            android:id="@+id/relativeLayout3"
+            android:id="@+id/id_more_op_setting"
             android:layout_width="250dp"
             android:layout_height="80dp"
-            android:layout_marginTop="5dp"
             android:background="@drawable/click_background" >
 
             <ImageView
@@ -109,10 +109,9 @@
         </ImageView>
 
         <RelativeLayout
-            android:id="@+id/relativeLayout4"
+            android:id="@+id/id_more_op_about"
             android:layout_width="250dp"
             android:layout_height="80dp"
-            android:layout_marginTop="5dp"
             android:background="@drawable/click_background" >
 
             <ImageView

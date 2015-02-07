@@ -6,6 +6,7 @@ import org.weiwei.model.Picture;
 import org.weiwei.model.PictureSet;
 import org.weiwei.service.CoreService;
 import org.weiwei.ui.view.TopBar;
+import org.weiwei.ui.view.TopBar.topbarClickListener;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
@@ -21,7 +23,7 @@ import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-public class PictureStorage extends Activity {
+public class PictureStorage extends Activity implements topbarClickListener{
 	
 	private PictureSet picSet;
 	private List<Picture> picList; //
@@ -46,6 +48,7 @@ public class PictureStorage extends Activity {
 		dir = picSet.dir;
 		topBar = (TopBar) findViewById(R.id.id_activity_picture_storage_topbar);
 		topBar.setTitle(dir);
+		topBar.setOnTopBarClickListener(this);
 		
 		imageLoader = CoreService.imageLoader; //
 		
@@ -128,5 +131,18 @@ public class PictureStorage extends Activity {
 	private final class ViewHolder{
 		ImageView imageview;
 		ImageView imageChoosed;
+	}
+
+
+	@Override
+	public void leftClick() {
+		// TODO Auto-generated method stub
+		finish();
+	}
+
+	@Override
+	public void rightClick() {
+		// TODO Auto-generated method stub
+		
 	}
 }

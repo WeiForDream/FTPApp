@@ -47,7 +47,7 @@ public class VmovieFragment extends Fragment{
 	public void onResume() {
 		Log.i("TAST", "onResume");
 		super.onResume();
-		initView();	
+
 	}
 	
 	private void initView() {
@@ -127,37 +127,37 @@ public class VmovieFragment extends Fragment{
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
-		Log.i("TAST", "onActivityCreated");
+//		Log.i("TAST", "onActivityCreated");
 		super.onActivityCreated(savedInstanceState);
 	}
 
 	@Override
 	public void onAttach(Activity activity) {
-		Log.i("TAST", "onAttach");
+//		Log.i("TAST", "onAttach");
 		super.onAttach(activity);
 	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		Log.i("TAST", "onCreate");
+//		Log.i("TAST", "onCreate");
 		super.onCreate(savedInstanceState);
 	}
 
 	@Override
 	public void onDestroyView() {
-		Log.i("TAST", "onDestroyView");
+//		Log.i("TAST", "onDestroyView");
 		super.onDestroyView();
 	}
 
 	@Override
 	public void onDetach() {
-		Log.i("TAST", "onDetach");
+//		Log.i("TAST", "onDetach");
 		super.onDetach();
 	}
 
 	@Override
 	public void onPause() {
-		Log.i("TAST", "onPause");
+//		Log.i("TAST", "onPause");
 		super.onPause();
 	}
 
@@ -167,11 +167,12 @@ public class VmovieFragment extends Fragment{
 	public void onStart() {
 		Log.i("TAST", "onStart");
 		super.onStart();
+		initView();	
 	}
 
 	@Override
 	public void onStop() {
-		Log.i("TAST", "onStop");
+//		Log.i("TAST", "onStop");
 		super.onStop();
 	}
 	

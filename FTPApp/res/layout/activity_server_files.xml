@@ -10,11 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         weiwei:leftBackground="@drawable/back_click"
-        weiwei:titleTextColor="#000"
-        weiwei:titleTextSize="11sp"
         weiwei:lineBackground="@color/grey"
-        weiwei:lineHeight="1dp" >
+        weiwei:lineHeight="1dp"
+        weiwei:titleTextColor="#000"
+        weiwei:titleTextSize="11sp" >
     </org.weiwei.ui.view.TopBar>
+
+    <org.weiwei.ui.view.PathBar
+        android:id="@+id/id_server_files_path_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </org.weiwei.ui.view.PathBar>
 
     <ListView
         android:id="@+id/id_activity_server_files_lv"

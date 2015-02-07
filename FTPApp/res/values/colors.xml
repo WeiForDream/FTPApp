@@ -5,6 +5,8 @@
     <color name="my_gray">#EAEAEE</color>
     <color name="my_grey">#dfdfdf</color>
     <color name="kc_grey">#f2f2f2</color>
+    <!-- 透明色 -->
+    <color name="tran">#00000000</color>
     <!-- 粉红色 -->
     <color name="pink">#ffc0cb</color>
     <!-- 亮粉红色 -->

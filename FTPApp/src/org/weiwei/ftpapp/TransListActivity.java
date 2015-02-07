@@ -1,8 +1,8 @@
 package org.weiwei.ftpapp;
 
-import org.weiwei.adapter.TransListAdapter;
 import org.weiwei.application.MyApplication;
 import org.weiwei.service.CoreService;
+import org.weiwei.ui.adapter.TransListAdapter;
 import org.weiwei.ui.view.TopBar;
 import org.weiwei.ui.view.TopBar.topbarClickListener;
 

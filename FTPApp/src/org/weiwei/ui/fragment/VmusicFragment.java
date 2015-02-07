@@ -1,6 +1,7 @@
 package org.weiwei.ui.fragment;
 
 import java.util.List;
+import java.util.concurrent.Semaphore;
 
 import org.weiwei.ftpapp.R;
 import org.weiwei.model.Audio;
@@ -29,6 +30,8 @@ public class VmusicFragment extends Fragment {
 	private Context context;
 	private View v;
 	private ListView listView;
+	
+	private Semaphore s = new Semaphore(1);
 
 	public VmusicFragment(Context context) {
 		this.context = context;
@@ -40,6 +43,7 @@ public class VmusicFragment extends Fragment {
 			Bundle savedInstanceState) {
 		Log.i("TAST", "onCreateView"+"---------VmusicFragment");
 		v = inflater.inflate(R.layout.fragment_video_music, container,false);
+		
 		return v;
 	}
 
@@ -48,7 +52,7 @@ public class VmusicFragment extends Fragment {
 	public void onResume() {
 		Log.i("TAST", "onResume"+"---------VmusicFragment");
 		super.onResume();
-		initView();
+
 	}
 	
 	private void initView() {
@@ -132,49 +136,50 @@ public class VmusicFragment extends Fragment {
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
-		Log.i("TAST", "onActivityCreated"+"---------VmusicFragment");
+//		Log.i("TAST", "onActivityCreated"+"---------VmusicFragment");
 		super.onActivityCreated(savedInstanceState);
 	}
 
 	@Override
 	public void onAttach(Activity activity) {
-		Log.i("TAST", "onAttach"+"---------VmusicFragment");
+//		Log.i("TAST", "onAttach"+"---------VmusicFragment");
 		super.onAttach(activity);
 	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		Log.i("TAST", "onCreate"+"---------VmusicFragment");
+//		Log.i("TAST", "onCreate"+"---------VmusicFragment");
 		super.onCreate(savedInstanceState);
 	}
 
 	@Override
 	public void onDestroyView() {
-		Log.i("TAST", "onDestroyView"+"---------VmusicFragment");
+//		Log.i("TAST", "onDestroyView"+"---------VmusicFragment");
 		super.onDestroyView();
 	}
 
 	@Override
 	public void onDetach() {
-		Log.i("TAST", "onDetach"+"---------VmusicFragment");
+//		Log.i("TAST", "onDetach"+"---------VmusicFragment");
 		super.onDetach();
 	}
 
 	@Override
 	public void onPause() {
-		Log.i("TAST", "onPause"+"---------VmusicFragment");
+//		Log.i("TAST", "onPause"+"---------VmusicFragment");
 		super.onPause();
 	}
 
 	@Override
 	public void onStart() {
 		Log.i("TAST", "onStart"+"---------VmusicFragment");
+		initView();
 		super.onStart();
 	}
 
 	@Override
 	public void onStop() {
-		Log.i("TAST", "onStop"+"---------VmusicFragment");
+//		Log.i("TAST", "onStop"+"---------VmusicFragment");
 		super.onStop();
 	}
 	

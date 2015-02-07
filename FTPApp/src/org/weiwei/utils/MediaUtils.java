@@ -1,7 +1,9 @@
 package org.weiwei.utils;
 
+import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -151,26 +153,86 @@ public class MediaUtils {
 	}
 	
 	
-	public List<String> getFile(){
-//		Uri fileUri = MediaStore.Files.FileColumns.;
-//		Cursor cursor = mContentResolver.query(fileUri, null, null, null, MediaStore.Video.Media.DATE_MODIFIED);
-//		while(cursor.moveToNext()){
-//			String path = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.DATA));
-//			result.add(path);
-//			Log.i("TAG",path);
-//			String title = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.TITLE));
-//			Log.i("TAG",title);
-//		}
+	public static File getSDCardFile(){
+		//获取SD卡路径
+		File sdRoot = null;
+		
+		//检测SD卡是否存在
+		String sdPath = PhoneMsgUtils.getSDCardPath();
+		if(!sdPath.equals(PhoneMsgUtils.SDCARD_UNMOUNT)){
+			sdRoot  = PhoneMsgUtils.getSDCardDirectory();
+		}
+		
+		return 	sdRoot;
+	}
+	
+	/**
+	 * 对文件夹进行排序,自定义排序算法,文件夹在前,文件在后
+	 * @param result
+	 */
+	public static File[] sortFile(File[] result){
+		if(result==null) return null;
+		Arrays.sort(result, new Comparator<File>() {
+
+			@Override
+			public int compare(File f0, File f1) {
+				// TODO Auto-generated method stub
+				if(f0 instanceof File&& f1 instanceof File){
+					if(f0.isDirectory()&&!f1.isDirectory()){
+						return -1; //返回负数,表示f0应该排在f1前面
+					}else if(!f0.isDirectory()&&f1.isDirectory()){
+						return 1; //返回正数表示f0排在f1后面
+					}else{
+						return f0.getName().compareTo(f1.getName());//如果类别相同表示按字典排序
+					}
+			}
+			
+				return 0;
+			}
+		});
+		return result;
+	}
+	
+	/**
+	 * 过滤掉隐藏文件
+	 * @param files
+	 */
+	public static File[] FilterHiddenFile(File[] files){
+		if(files==null) return null;
+		List<File> myfile = new ArrayList<File>();
+		
+		for(int i=0;i<files.length;i++){
+			if(files[i].isHidden()){
+//				Log.i("TEST",rootList[i].getName());
+				continue;
+			}
+			File file = files[i];
+			myfile.add(file);
+		}
+		
+		return  myfile.toArray(new File[myfile.size()]); //返回过滤后文件列表
+	}
+	
+	/**
+	 * 过滤隐藏文件并排序
+	 * @param files
+	 * @return
+	 */
+	public static File[] sortAndFilter(File[] files){
+		if(files!=null){
+			File[] result = FilterHiddenFile(files);
+			return sortFile(result);
+		}
 		
 		return null;
 	}
+	
 	
 	/**
 	 * 该方法获取图片所在文件夹，加入到集合中去
 	 * @param pic 要加入的picture元素
 	 * @param result 
-	 */
-	
+	 */	
 	private void addPicture(Picture pic,List<PictureSet> result){
 		Picture p = pic;
 //		String dir = StringUtils.getImageDir(p.getPicUrl());//获取图片路径所在的父文件夹

@@ -3,11 +3,13 @@ package org.weiwei.ftpapp;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.weiwei.adapter.MainAdapter;
 import org.weiwei.application.MyApplication;
 import org.weiwei.service.CoreService;
 import org.weiwei.service.CoreService.MyBinder;
+import org.weiwei.ui.adapter.MainAdapter;
+import org.weiwei.ui.adapter.SlidingMenuAdapter;
 import org.weiwei.ui.fragment.AppFragment;
+import org.weiwei.ui.fragment.FTotalFragment;
 import org.weiwei.ui.fragment.FileFragment;
 import org.weiwei.ui.fragment.PictureFragment;
 import org.weiwei.ui.fragment.VideoFragment;
@@ -34,8 +36,11 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,27 +69,22 @@ public class MainActivity extends FragmentActivity {
 
 	// application
 	private MyApplication myApp;
+	
+	//侧滑菜单
+	private SlidingMenu menu;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-//		SlidingMenu menu = new SlidingMenu(this);
-//        menu.setMode(SlidingMenu.LEFT);
-//        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-//        menu.setShadowWidthRes(R.dimen.shadow_width);
-////        menu.setShadowDrawable(R.drawable.shadow);
-//        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-//        menu.setFadeDegree(0.35f);
-//        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
-//        menu.setMenu(R.layout.sliding_menu);
-		
 
-		
 		myApp = (MyApplication) getApplication();
 		initService();
 		initTabLine();
 		initView();
+		
+		initSlidingMenu();
+		
 //		initImageView();
 	}
 
@@ -110,7 +110,50 @@ public class MainActivity extends FragmentActivity {
 		}
 	};
 
-	// 初始化tabline
+	/**
+	 * 初始化SlidingMenu
+	 */
+	private void initSlidingMenu(){
+        menu = new SlidingMenu(this);
+        menu.setMode(SlidingMenu.LEFT);
+        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
+        menu.setShadowWidthRes(R.dimen.shadow_width);
+        menu.setShadowDrawable(R.drawable.shadow);
+        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+        menu.setFadeDegree(0.35f);
+        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
+        menu.setMenu(R.layout.sliding_menu);
+        
+        /**
+         * 设置菜单栏
+         */
+        ListView menuLv = (ListView) menu.findViewById(R.id.id_sliding_menu_lv);
+        menuLv.setAdapter(new SlidingMenuAdapter(this));
+        menuLv.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				switch(position){
+				case 0:
+					break;
+				case 1:
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+				case 4:
+					Toast.makeText(MainActivity.this, "你肥皂掉了", Toast.LENGTH_LONG).show();
+					break;
+				}
+			}
+		});
+	}
+	
+	/**
+	 *  初始化tabline
+	 */
 	private void initTabLine() {
 		mTabLine = (ImageView) findViewById(R.id.id_tabline);
 		// 获取当前屏幕宽度
@@ -124,7 +167,9 @@ public class MainActivity extends FragmentActivity {
 		mTabLine.setLayoutParams(lp);
 	}
 
-	// 初始化界面
+	/**
+	 * 初始化界面
+	 */
 	private void initView() {
 		mAppTextView = (TextView) findViewById(R.id.id_title_tv_app);
 		mAppTextView.setTextColor(getResources().getColor(R.color.my_green));
@@ -164,10 +209,7 @@ public class MainActivity extends FragmentActivity {
 		public void onClick(View v) {
 			switch(v.getId()){
 			case R.id.id_activity_main_bottom_left_image:
-//				menu.openMenu();
-//				mViewPager.setCurrentItem(0);
-				Intent intentL = new Intent(MainActivity.this,MoreOperation.class);
-				startActivity(intentL);
+				menu.showMenu();//打开菜单
 				break;
 			case R.id.id_activity_main_bottom_right_image:
 				Intent intent = new Intent(MainActivity.this,
@@ -185,14 +227,15 @@ public class MainActivity extends FragmentActivity {
 	}
 	
 	
-	// tab指示器
+	/**
+	 *  tab指示器
+	 * @author weiwei
+	 *
+	 */
 	protected class TabListener implements ViewPager.OnPageChangeListener {
 
 		@Override
-		public void onPageScrollStateChanged(int position) {
-
-//			Log.i("TAG", position + "");
-		}
+		public void onPageScrollStateChanged(int position) {}
 
 		@Override
 		public void onPageScrolled(int position, float positionOffset,
@@ -210,7 +253,7 @@ public class MainActivity extends FragmentActivity {
 			switch (position) {
 			case 0:
 				mAppTextView.setTextColor(getResources().getColor(R.color.my_green));
-				break;
+		        return;
 			case 1:
 				mPiectureTextView.setTextColor(getResources().getColor(R.color.my_green));
 				break;
@@ -221,12 +264,13 @@ public class MainActivity extends FragmentActivity {
 				mFileTextView.setTextColor(getResources().getColor(R.color.my_green));
 				break;
 			}
-
 		}
 
 	}
 
-	// 重新设置页面颜色
+	/**
+	 *  重新设置页面颜色
+	 */
 	public void resetTextColor() {
 		mAppTextView.setTextColor(Color.BLACK);
 		mPiectureTextView.setTextColor(Color.BLACK);
@@ -234,7 +278,11 @@ public class MainActivity extends FragmentActivity {
 		mFileTextView.setTextColor(Color.BLACK);
 	}
 
-	// Tab监听
+	/**
+	 *  Tab监听
+	 * @author weiwei
+	 *
+	 */
 	protected class TabClickListener implements OnClickListener {
 
 		@Override
@@ -245,7 +293,7 @@ public class MainActivity extends FragmentActivity {
 
 	}
 
-	// 初始化imagerview
+	// 初始化imageview
 	private void initImageView() {
 		for (int i = 0; i < res.length; i++) {
 			ImageView imageView = (ImageView) findViewById(res[i]);
@@ -318,8 +366,15 @@ public class MainActivity extends FragmentActivity {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-			moveTaskToBack(true);
-			
+			//当期是文件夹界面
+			if(mViewPager.getCurrentItem()==3){
+				
+				FileFragment fileFrag  = (FileFragment) mDatas.get(3);
+				FTotalFragment totalFrag = (FTotalFragment) fileFrag.getmTotalFragment();
+				totalFrag.backParentDir();
+				
+			}
+			return true;
 		}
 		return false;
 	}

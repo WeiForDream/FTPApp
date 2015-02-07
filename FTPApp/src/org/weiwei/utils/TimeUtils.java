@@ -12,11 +12,16 @@ public class TimeUtils {
 
 	//获取当前时间
 	public static String getCurrentTime(){
-		String time = "";
+//		String time = "";
 		Calendar c = Calendar.getInstance();
-		int hour = c.get(Calendar.HOUR_OF_DAY);
-		int min = c.get(Calendar.MINUTE);
-		time = hour+":"+min;
-		return time;
+		return formatDate(c.getTimeInMillis());
+//		int hour = c.get(Calendar.HOUR_OF_DAY);
+//		int min = c.get(Calendar.MINUTE);
+//		time = hour+":"+min;
+//		return time;
+	}
+	
+	public static String formatDate(long time){
+		return StringUtils.formatData(time);
 	}
 }

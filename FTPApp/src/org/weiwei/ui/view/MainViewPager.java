@@ -3,8 +3,9 @@ package org.weiwei.ui.view;
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.HorizontalScrollView;
 
 public class MainViewPager extends ViewPager{
 
@@ -21,21 +22,38 @@ public class MainViewPager extends ViewPager{
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent ev) {
 		// TODO Auto-generated method stub
-		Log.i("TouchEvent", "dispatchTouchEvent  MainViewPager");
+//		Log.i("TouchEvent", "dispatchTouchEvent  MainViewPager");
 		return super.dispatchTouchEvent(ev);
 	}
 	@Override
 	public boolean onTouchEvent(MotionEvent ev) {
 		// TODO Auto-generated method stub
-		Log.i("TouchEvent", "onTouchEvent  MainViewPager");
+//		Log.i("TouchEvent", "onTouchEvent  MainViewPager");
 		return super.onTouchEvent(ev);
 	}
 
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent ev) {
 		// TODO Auto-generated method stub
-		Log.i("TouchEvent", "onInterceptTouchEvent  MainViewPager");
+
+//		int i = getCurrentItem();
+//		Log.i("TouchEvent", "onInterceptTouchEvent  MainViewPager"+" "+i);
+//		if(i==3){
+//		return false;
+//		}
 		return super.onInterceptTouchEvent(ev);
+	}
+
+	/**
+	 * ViewPager里嵌套HorizontalScrollView的焦点冲突解决方法
+	 */
+	@Override
+	protected boolean canScroll(View v, boolean checkV, int dx, int x, int y) {
+		// TODO Auto-generated method stub
+		if(v instanceof HorizontalScrollView){
+			return true;
+		}
+		return super.canScroll(v, checkV, dx, x, y);
 	}
 
 	

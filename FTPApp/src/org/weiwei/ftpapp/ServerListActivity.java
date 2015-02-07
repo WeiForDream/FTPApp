@@ -3,9 +3,9 @@ package org.weiwei.ftpapp;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.weiwei.adapter.ServerListAdapter;
 import org.weiwei.ftp.FTPClient;
 import org.weiwei.model.ConServer;
+import org.weiwei.ui.adapter.ServerListAdapter;
 import org.weiwei.ui.dialog.LoginDialog;
 import org.weiwei.ui.view.TopBar;
 import org.weiwei.ui.view.TopBar.topbarClickListener;

@@ -52,9 +52,15 @@ public class PpictureFragment extends Fragment{
 	
 	
 	@Override
+	public void onStart() {
+		mMedia.getPicture(mHandler); //获取图片集合
+		super.onStart();
+	}
+
+	@Override
 	public void onResume() {
 		super.onResume();
-		mMedia.getPicture(mHandler); //获取图片集合
+
 		
 	}
 

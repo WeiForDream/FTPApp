@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <org.weiwei.ui.view.PathBar
+        android:id="@+id/id_fragment_file_list_path_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </org.weiwei.ui.view.PathBar>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey" />
+     
+    <ListView
+        android:id="@+id/id_fragment_file_list_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:listSelector="@drawable/click_background" >
+    </ListView>
+
+</LinearLayout>

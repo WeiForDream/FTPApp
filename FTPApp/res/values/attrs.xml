@@ -14,15 +14,15 @@
         <attr name="rightTextColor" format="color" />
         <attr name="rightTextSize" format="dimension" />
         <attr name="lineBackground" format="reference|color" />
-        <attr name="lineHeight" format="dimension"/>
+        <attr name="lineHeight" format="dimension" />
     </declare-styleable>
-
+    
     <declare-styleable name="CircleProgress">
-        <attr name="centerIcon" format="reference|color"/>
-        <attr name="circleWidth" format="dimension"/>
-        <attr name="startIcon" format="reference|color"/>
-        <attr name="stopIcon" format="reference|color"/>
-        <attr name="finishIcon" format="reference|color"/>
+        <attr name="centerIcon" format="reference|color" />
+        <attr name="circleWidth" format="dimension" />
+        <attr name="startIcon" format="reference|color" />
+        <attr name="stopIcon" format="reference|color" />
+        <attr name="finishIcon" format="reference|color" />
         <attr name="progressWidth" format="dimension" />
         <attr name="progressColor" format="color" />
         <attr name="progressBackgourd" format="color" />
@@ -32,4 +32,9 @@
         <attr name="MenuWidth" format="dimension" />
     </declare-styleable>
     
+    <declare-styleable name="PathBar">
+        <attr name="arrow" format="reference" />
+        <attr name="leftTitleText" format="string"></attr>
+    </declare-styleable>
+
 </resources>
