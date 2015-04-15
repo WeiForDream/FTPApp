@@ -15,6 +15,10 @@ public class AppInfo {
 	private boolean userapp;
 	// 应用大小
 	private String appsize;
+	//应用安装包路径
+	private String url;
+	//安装包大小
+	private long filesize;
 	
 	private boolean ischaked = false;
 
@@ -72,6 +76,22 @@ public class AppInfo {
 
 	public void setIschaked(boolean ischaked) {
 		this.ischaked = ischaked;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public long getFilesize() {
+		return filesize;
+	}
+
+	public void setFilesize(long filesize) {
+		this.filesize = filesize;
 	}
 
 	

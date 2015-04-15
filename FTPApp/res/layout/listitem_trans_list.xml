@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:weiwei="http://schemas.android.com/apk/res/org.weiwei.ftpapp"
+    xmlns:weiwei="http://schemas.android.com/apk/res/org.weiwei.ui.activity"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="80dp" >
@@ -12,7 +12,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/ic_easytransfer_video" />
+        android:src="@drawable/ic_easytransfer_music" />
 
     <org.weiwei.ui.view.CirProgressLayout
         android:id="@+id/id_listitem_trans_list_progressbar"
@@ -40,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="火影忍者剧场版the last"
-            android:textSize="20sp" />
+            android:textSize="17sp" />
 
         <RelativeLayout
             android:layout_width="wrap_content"

@@ -1,6 +1,6 @@
 package org.weiwei.ui.view;
 
-import org.weiwei.ftpapp.R;
+import org.weiwei.ui.activity.R;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

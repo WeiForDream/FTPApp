@@ -2,7 +2,10 @@ package org.weiwei.ui.fragment;
 
 import java.io.File;
 
-import org.weiwei.ftpapp.R;
+import org.weiwei.application.MyApplication;
+import org.weiwei.model.User;
+import org.weiwei.service.CoreService;
+import org.weiwei.ui.activity.R;
 import org.weiwei.ui.adapter.FileListAdapter;
 import org.weiwei.ui.view.PathBar;
 import org.weiwei.utils.MediaUtils;
@@ -12,7 +15,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +33,12 @@ public class FTotalFragment extends Fragment {
 	private FileListAdapter mFileAdapter;
 
 	private PathBar pathBar;
-
+	
+	private CoreService coreService;
+	
+	private MyApplication myApp;
+	
+	private User user;
 	/**
 	 * 当前文件夹中的文件
 	 */
@@ -50,8 +57,15 @@ public class FTotalFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		view = inflater.inflate(R.layout.fragment_file_list, container, false);
+		initServer();
 		initView();
 		return view;
+	}
+	
+	public void initServer(){
+		myApp = (MyApplication) getActivity().getApplication();
+		coreService = myApp.getCoreService();
+		user = myApp.getUser();
 	}
 
 	public void initView() {

@@ -6,6 +6,8 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.util.Log;
+
 /**
  * 字符串处理
  * @author weiwei
@@ -14,9 +16,9 @@ import java.util.Date;
 
 public class StringUtils {
 	private static final long BSize = 1024;
-	private static final long KBSize = 1024 * 1024;
-	private static final long MBSize = 1024 * 1024 * 1024;
-	private static final long GBSize = 1024 * 1024 * 1024 * 1024;
+	private static final long KBSize = 1048576;
+	private static final long MBSize = 1073741824;
+//	private static final long GBSize = 1073741824;
 	private static DecimalFormat df = new DecimalFormat(".00");
 	
 	/**
@@ -42,14 +44,16 @@ public class StringUtils {
 
 			return df.format(result) + " MB";
 		}
-		if (size >= MBSize && size < GBSize) {
+		if (size >= MBSize) {
 			float result = size / (float) MBSize;
 			return df.format(result) + " GB";
 		}
-		if (size >= GBSize) {
-			float result = size / (float) GBSize;
-			return df.format(result) + " TB";
-		}
+//		if (size >= GBSize) {
+//			Log.i("data 1111111111111", " /"+GBSize);
+//			float result = size / (float) GBSize;
+//			Log.i("data 1111111111111", result+"  /"+size+" /"+GBSize);
+//			return df.format(result) + " TB";
+//		}
 		return "";
 
 	}
@@ -105,12 +109,21 @@ public class StringUtils {
 		return file.getParentFile().getName();//获取父文件夹的名称
 	}
 	
-	public static String formatData(long time){
+	public static String formatDate(long time){
 		SimpleDateFormat sdf= new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
 		java.util.Date dt = new Date(time);  
 		String sDateTime = sdf.format(dt);  //得到精确到秒的表示：08/31/2006 21:08:00
 		return sDateTime;
 		
+	}
+	
+	public static String formatDate(Date date){
+
+		if(date!=null){
+			return formatDate(date.getTime());
+		}
+		
+		return "";
 	}
 }

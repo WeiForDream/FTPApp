@@ -2,7 +2,11 @@ package org.weiwei.utils;
 
 import java.util.Calendar;
 
-
+/**
+ * 时间工具类
+ * @author weiwei
+ *
+ */
 public class TimeUtils {
 
 	
@@ -22,6 +26,6 @@ public class TimeUtils {
 	}
 	
 	public static String formatDate(long time){
-		return StringUtils.formatData(time);
+		return StringUtils.formatDate(time);
 	}
 }

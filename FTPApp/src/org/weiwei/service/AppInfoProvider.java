@@ -35,7 +35,10 @@ public class AppInfoProvider {
 			appinfo.setAppicon(info.applicationInfo.loadIcon(pm));
 			//应用程序的名称 info.applicationInfo.loadLabel(pm);
 			appinfo.setAppname(info.applicationInfo.loadLabel(pm).toString());
-		
+			//应用程序的安装包路径
+			appinfo.setUrl(info.applicationInfo.sourceDir);
+			
+//			appinfo.setFilesize(info.)
 			//过滤出第三方（非系统）应用程序的名称
 			appinfo.setUserapp(filterApp(info.applicationInfo));
 			appinfos.add(appinfo);

@@ -1,13 +1,11 @@
 package org.weiwei.ui.view;
 
-import org.weiwei.ftpapp.R;
+import org.weiwei.ui.activity.R;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +17,11 @@ public class CirProgressLayout extends FrameLayout {
 	/**
 	 * 该控件的测量值以及测量模式
 	 */
-	private int width, height, widthMode, heightMode;
+	private float width, height, widthMode, heightMode;
 	/**
 	 * 控件中心坐标
 	 */
-	private int centerX, centerY;
+	private float centerX, centerY;
 	/**
 	 * 中心各图片
 	 */
@@ -141,8 +139,8 @@ public class CirProgressLayout extends FrameLayout {
 
 		View child = getChildAt(0); //获取子View即图片的
 		measureChild(child, widthMeasureSpec, heightMeasureSpec);//让子控件去测量自己的宽高
-		int childWidth = child.getMeasuredWidth();
-		int childHeight = child.getMeasuredHeight();
+		float childWidth = child.getMeasuredWidth();
+		float childHeight = child.getMeasuredHeight();
 		
 		width = getMeasuredWidth(); // 获取当前view的宽度
 		height = getMeasuredHeight(); // 获取当前view的高度

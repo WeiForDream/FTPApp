@@ -9,7 +9,7 @@ import java.util.concurrent.Executors;
 import android.os.Handler;
 
 /**
- * 线程管理
+ * 上传和下载任务管理,利用线程池来并发多个线程
  * 
  * @author weiwei
  * 
@@ -17,13 +17,26 @@ import android.os.Handler;
 
 public class TaskManager {
 
+	/**
+	 * 同步锁
+	 */
 	private final static Object syncObj = new Object();
+	/**
+	 * 单例
+	 */
 	private static TaskManager instance;
-	private ExecutorService executorService; // 线程池
+	/**
+	 * 线程池
+	 */
+	private ExecutorService executorService;
+	/**
+	 * 默认的最大任务数
+	 */
 	private final static int defTheadNumber = 3; //最多进行3个任务
-
-	//维护线程列表
-	private List<ITaskThread> mTaskThreadList = new ArrayList<ITaskThread>(); //线程列表
+	/**
+	 * 任务线程列表
+	 */
+	private List<BaseThread> mTaskThreadList = new ArrayList<BaseThread>(); //线程列表
 	
 	private TaskManager(){
 		this(defTheadNumber);
@@ -49,28 +62,29 @@ public class TaskManager {
 	//执行线程
 	public void executor(Runnable taskThread){
 		if(taskThread!=null){
-			mTaskThreadList.add((ITaskThread) taskThread); 
+			mTaskThreadList.add((BaseThread) taskThread); 
 			executorService.execute(taskThread);
 		}
 	}
 	
-	//这样就把每个Thread都设置成同一个handler了
-	public void setHandler(Handler handler){
-		Iterator<ITaskThread> it = mTaskThreadList.iterator();
-		while(it.hasNext()){
-			ITaskThread taskThread = it.next();
-			taskThread.setHandler(handler);
-		}
-	}
-	
-	//移除handler
-	public void removeHandler(){
-		Iterator<ITaskThread> it = mTaskThreadList.iterator();
-		while(it.hasNext()){
-			ITaskThread taskThread = it.next();
-			taskThread.removeHandler();
-		}
-	}
-	
-	
+//	/**
+//	 * 设置传输列表的handler
+//	 * @param handler
+//	 */
+//	public void setHandler(Handler handler){
+//		Iterator<ITaskThread> it = mTaskThreadList.iterator();
+//		while(it.hasNext()){
+//			ITaskThread taskThread = it.next();
+//			taskThread.setHandler(handler);
+//		}
+//	}
+//	
+//	//移除handler
+//	public void removeHandler(){
+//		Iterator<ITaskThread> it = mTaskThreadList.iterator();
+//		while(it.hasNext()){
+//			ITaskThread taskThread = it.next();
+//			taskThread.removeHandler();
+//		}
+//	}
 }

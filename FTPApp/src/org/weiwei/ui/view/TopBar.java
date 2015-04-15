@@ -1,17 +1,14 @@
 package org.weiwei.ui.view;
 
-import org.weiwei.ftpapp.R;
+import org.weiwei.ui.activity.R;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -114,6 +111,7 @@ public class TopBar extends RelativeLayout {
 				ViewGroup.LayoutParams.WRAP_CONTENT);
 		rightParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, TRUE);
 		rightParams.addRule(RelativeLayout.CENTER_VERTICAL,TRUE);
+		rightParams.setMargins(0, 0, 20, 0);
 		addView(rightLayout, rightParams);
 
 		titleParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,

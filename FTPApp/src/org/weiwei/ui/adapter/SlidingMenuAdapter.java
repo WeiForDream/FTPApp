@@ -1,6 +1,7 @@
 package org.weiwei.ui.adapter;
 
-import org.weiwei.ftpapp.R;
+
+import org.weiwei.ui.activity.R;
 
 import android.content.Context;
 import android.view.LayoutInflater;

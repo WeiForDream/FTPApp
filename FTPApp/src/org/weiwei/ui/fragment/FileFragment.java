@@ -1,6 +1,6 @@
 package org.weiwei.ui.fragment;
 
-import org.weiwei.ftpapp.R;
+import org.weiwei.ui.activity.R;
 import org.weiwei.utils.MediaUtils;
 
 import android.os.Bundle;

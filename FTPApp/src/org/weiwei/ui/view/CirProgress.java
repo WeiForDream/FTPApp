@@ -1,11 +1,10 @@
 package org.weiwei.ui.view;
 
-import org.weiwei.ftpapp.R;
+import org.weiwei.ui.activity.R;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
@@ -88,7 +87,7 @@ public class CirProgress extends View {
 	 * @param iconWidth
 	 * @param iconHeight
 	 */
-	public void setIconWidthAndHeight(int iconWidth, int iconHeight) {
+	public void setIconWidthAndHeight(float iconWidth, float iconHeight) {
 		this.iconHeight = iconHeight;
 		this.iconWidth = iconWidth;
 		init(); // 初始化参数
@@ -100,7 +99,7 @@ public class CirProgress extends View {
 	 * @param x
 	 * @param y
 	 */
-	public void setIconXY(int x, int y) {
+	public void setIconXY(float x, float y) {
 		iconX = x;
 		iconY = y;
 		centerX = iconX;
@@ -112,8 +111,8 @@ public class CirProgress extends View {
 	 * 初始化各参数
 	 */
 	public void init() {
-		int iconWidthHalf = (int) (iconWidth / 2);
-		int iconHeightHalf = (int) (iconHeight / 2);
+		float iconWidthHalf = iconWidth / 2;
+		float iconHeightHalf = iconHeight / 2;
 		/**
 		 * 内圆半径
 		 */
@@ -150,7 +149,7 @@ public class CirProgress extends View {
 		
 		progressBgPaint.setStyle(Paint.Style.STROKE);
 		progressBgPaint.setStrokeWidth(progressWidth);
-		progressBgPaint.setColor(getResources().getColor(R.color.my_gray));
+		progressBgPaint.setColor(getResources().getColor(R.color.white));
 		progressBgPaint.setAntiAlias(true);
 	}
 
@@ -158,10 +157,10 @@ public class CirProgress extends View {
 	 * 初始化矩形轮廓
 	 */
 	public void initRect() {
-		int arcLeft = (int) (centerX - proRadius);
-		int arcTop = (int) (centerY - proRadius);
-		int arcRight = (int) (centerX + proRadius);
-		int arcBottom = (int) (centerY + proRadius);
+		float arcLeft = centerX - proRadius;
+		float arcTop = centerY - proRadius;
+		float arcRight = centerX + proRadius;
+		float arcBottom = centerY + proRadius;
 		proArcRect = new RectF(arcLeft, arcTop, arcRight, arcBottom);
 	}
 
@@ -175,13 +174,14 @@ public class CirProgress extends View {
 		postInvalidate();// 刷新界面
 	}
 
-	public int getProgressWidth() {
-		return (int) progressWidth;
+	public float getProgressWidth() {
+		return progressWidth;
 	}
 
 	public void setProgressWidth(float progressWidth) {
 		this.progressWidth = progressWidth;
 		progressPaint.setStrokeWidth(progressWidth); //设置圆弧宽度
+		progressBgPaint.setStrokeWidth(progressWidth);
 	}
 	
 	public void setProgressColor(int color){

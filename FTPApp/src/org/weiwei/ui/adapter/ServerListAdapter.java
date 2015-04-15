@@ -2,8 +2,8 @@ package org.weiwei.ui.adapter;
 
 import java.util.List;
 
-import org.weiwei.ftpapp.R;
-import org.weiwei.model.ConServer;
+import org.weiwei.model.User;
+import org.weiwei.ui.activity.R;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,11 +14,11 @@ import android.widget.TextView;
 
 public class ServerListAdapter extends BaseAdapter{
 
-	private List<ConServer> mDatas;  //获取数据
+	private List<User> mDatas;  //获取数据
 	private LayoutInflater mInflater;
 	private Context context;
 	
-	public ServerListAdapter(Context context,List<ConServer> datas){
+	public ServerListAdapter(Context context,List<User> datas){
 		mInflater = LayoutInflater.from(context);
 		mDatas = datas;
 		this.context = context;
@@ -55,11 +55,11 @@ public class ServerListAdapter extends BaseAdapter{
 		}else{
 			holder = (ServerListViewHolder) convertView.getTag();
 		}
-		ConServer cServer = mDatas.get(position);
-		holder.serverName.setText(cServer.getServerName());
-		holder.lastConnectTime.setText(cServer.getLastConnectTime());
-		holder.hortPort.setText(cServer.getHostAndPort());
-		holder.state.setText("已连接");
+		User u = mDatas.get(position);
+		holder.serverName.setText(u.getServerName());
+		holder.lastConnectTime.setText(u.getLastConnectTime());
+		holder.hortPort.setText(u.getHost()+":"+u.getPort());
+		holder.state.setText(u.getState()==User.IS_CONNECT?"已连接":"未连接");
 		return convertView;
 	}
 

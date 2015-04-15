@@ -1,6 +1,7 @@
 package org.weiwei.ui.dialog;
 
-import org.weiwei.ftpapp.R;
+
+import org.weiwei.ui.activity.R;
 
 import android.app.Dialog;
 import android.content.Context;

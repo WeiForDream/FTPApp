@@ -2,9 +2,9 @@ package org.weiwei.ui.fragment;
 
 import java.util.List;
 
-import org.weiwei.ftpapp.PictureStorage;
-import org.weiwei.ftpapp.R;
 import org.weiwei.model.PictureSet;
+import org.weiwei.ui.activity.PictureStorage;
+import org.weiwei.ui.activity.R;
 import org.weiwei.utils.MediaUtils;
 
 import android.content.Context;

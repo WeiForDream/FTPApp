@@ -3,7 +3,7 @@ package org.weiwei.ui.adapter;
 import java.io.File;
 import java.util.List;
 
-import org.weiwei.ftpapp.R;
+import org.weiwei.ui.activity.R;
 import org.weiwei.utils.MediaUtils;
 import org.weiwei.utils.PhoneMsgUtils;
 import org.weiwei.utils.StringUtils;
@@ -11,10 +11,13 @@ import org.weiwei.utils.StringUtils;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * 文件列表适配器
@@ -25,12 +28,14 @@ public class FileListAdapter extends BaseAdapter{
 
 	private LayoutInflater mInflater;
 
-	
 	private File file;
 	
 	private File[] mDatas;
 	
+	private Context context;
+	
 	public FileListAdapter(Context context){
+		this.context = context;
 		mInflater = LayoutInflater.from(context);
 		file = MediaUtils.getSDCardFile();
 		fileFilter(file.listFiles());
@@ -70,22 +75,34 @@ public class FileListAdapter extends BaseAdapter{
 			holder.filename = (TextView) convertView.findViewById(R.id.id_listitem_file_list_name);
 			holder.filesize = (TextView) convertView.findViewById(R.id.id_listitem_file_list_size);
 			holder.modifyDate = (TextView)convertView.findViewById(R.id.id_listitem_file_list_modify_date);
+			holder.sentBtn = (Button) convertView.findViewById(R.id.id_listitem_sent_button);
 			convertView.setTag(holder);
 		}else{
 			holder = (ViewHolder) convertView.getTag();
 		}
+		
+		File file = mDatas[position];
+		
+		holder.filename.setText(file.getName());
 
-		holder.filename.setText(mDatas[position].getName());
-
-		if(mDatas[position].isFile()){
+		if(file.isFile()){
 			holder.image.setImageResource(R.drawable.ic_easytransfer_file);
-			holder.filesize.setText(StringUtils.formatByte(mDatas[position].length()));
-			holder.modifyDate.setText(StringUtils.formatData(mDatas[position].lastModified()));
-		}else if(mDatas[position].isDirectory()){
+			holder.filesize.setText(StringUtils.formatByte(file.length()));
+			holder.modifyDate.setText(StringUtils.formatDate(file.lastModified()));
+		}else if(file.isDirectory()){
 			holder.image.setImageResource(R.drawable.ic_easytransfer_folder);
 			holder.filesize.setText("");
-			holder.modifyDate.setText(StringUtils.formatData(mDatas[position].lastModified()));
+			holder.modifyDate.setText(StringUtils.formatDate(file.lastModified()));
 		}
+		
+		holder.sentBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				showMessage("hello");
+			}
+		});
 		
 		return convertView;
 	
@@ -96,6 +113,7 @@ public class FileListAdapter extends BaseAdapter{
 		public TextView filename;
 		public TextView filesize;
 		public TextView modifyDate;
+		public Button sentBtn;
 	}
 
 	public File getFile() {
@@ -115,6 +133,9 @@ public class FileListAdapter extends BaseAdapter{
 		this.mDatas = mDatas;
 	}
 
-
+	private void showMessage(String message) {
+		Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+	}
+	
 	
 }

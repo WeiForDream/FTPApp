@@ -37,8 +37,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_marginLeft="25dp"
-                android:text="@string/more" />
+                android:layout_marginLeft="10dp"
+                android:text="更多功能" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:text="@string/connect_phone" >
+                android:text="远程服务器" >
             </TextView>
         </RelativeLayout>
 
@@ -81,8 +81,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
-                android:text="@string/transfer" />
+                android:layout_marginRight="10dp"
+                android:text="传输列表" />
         </RelativeLayout>
     </LinearLayout>
 

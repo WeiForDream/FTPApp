@@ -1,17 +1,15 @@
 package org.weiwei.ui.view;
 
-import org.weiwei.ftpapp.R;
+import org.weiwei.ui.activity.R;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.LinearLayout.LayoutParams;
 
 /**
  * 路径条
@@ -99,6 +97,7 @@ public class PathBar extends LinearLayout{
 		
 		TextView leftTitle = new TextView(context);
 		leftTitle.setText(leftTitleText);
+		leftTitle.setTextColor(getResources().getColor(R.color.black));
 
 		RelativeLayout leftLayout = new RelativeLayout(context);
 		leftLayout.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.MATCH_PARENT));
@@ -143,6 +142,7 @@ public class PathBar extends LinearLayout{
 		 */
 		TextView t = new TextView(context);
 		t.setText(dirName);
+		t.setTextColor(getResources().getColor(R.color.black));
 		
 		/**
 		 * 目录文本所在的布局参数
@@ -194,7 +194,7 @@ public class PathBar extends LinearLayout{
 	}
 	
 	/**
-	 * 更新路径条
+	 * 更新路径条,当数据更新时利用该方法进行进度条的更新
 	 */
 	public void notifyDataChanged(){
 		mDirBar.removeAllViews();

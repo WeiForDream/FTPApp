@@ -1,9 +1,11 @@
 package org.weiwei.ui.fragment;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-import org.weiwei.ftpapp.R;
 import org.weiwei.model.AppInfo;
+import org.weiwei.ui.activity.R;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -17,10 +19,13 @@ public class AppFragmentAdapter extends BaseAdapter {
 
 	private LayoutInflater mInflater;
 	private List<AppInfo> AppInfoList;
+	//代表被选择的App
+	private List<AppInfo> AppChecked;
 
 	public AppFragmentAdapter(Context context, List<AppInfo> AppInfoList) {
 		mInflater = LayoutInflater.from(context);
 		this.AppInfoList = AppInfoList;
+		AppChecked = new ArrayList<AppInfo>();
 
 	}
 
@@ -77,6 +82,19 @@ public class AppFragmentAdapter extends BaseAdapter {
 		return convertView;
 	}
 
+	/**
+	 * 清空被选中的选项
+	 */
+	public void clearChecked(){
+		Iterator<AppInfo> it = AppChecked.iterator();
+		while(it.hasNext()){
+			AppInfo ap = it.next();
+			ap.setIschaked(false);
+		}
+		AppChecked.clear();
+		notifyDataSetChanged();
+	}
+	
 	// 更新被选择的状态
 	public void updateChecked(int position, View view) {
 		AppInfo appInfo = AppInfoList.get(position);
@@ -85,9 +103,11 @@ public class AppFragmentAdapter extends BaseAdapter {
 		boolean ischecked = appInfo.isIschaked();
 		if (ischecked) {
 			appInfo.setIschaked(false);
+			AppChecked.remove(appInfo);//从被选择列表移除
 			image.setVisibility(View.GONE);
 		} else {
 			appInfo.setIschaked(true);
+			AppChecked.add(appInfo);//加入被选择列表
 			image.setVisibility(View.VISIBLE);
 		}
 	}
@@ -99,6 +119,16 @@ public class AppFragmentAdapter extends BaseAdapter {
 	public void setAppInfoList(List<AppInfo> appInfoList) {
 		AppInfoList = appInfoList;
 	}
+	
+	public List<AppInfo> getAppChecked() {
+		return AppChecked;
+	}
+
+	public void setAppChecked(List<AppInfo> appChecked) {
+		AppChecked = appChecked;
+	}
+
+
 
 	private final class AppViewHolder {
 

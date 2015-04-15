@@ -2,13 +2,13 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
 
@@ -25,11 +25,19 @@
         <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
     </style>
 
+    <style name="AnimBottom2" parent="@android:style/Animation">
+
+        <!-- 窗体进入时的动画 -->
+        <item name="android:windowEnterAnimation">@anim/activity_bottom_in</item>
+        <!-- 窗体退出时的动画 -->
+        <item name="android:windowExitAnimation">@anim/activity_bottom_out</item>
+    </style>
+
     <style name="AnimMenu" parent="@android:style/Animation">
         <item name="android:windowEnterAnimation">@anim/sliding_menu_in</item>
         <item name="android:windowExitAnimation">@anim/sliding_menu_out</item>
     </style>
-    
+
     <style name="sliding_menu">
         <item name="android:windowAnimationStyle">@style/AnimMenu</item>
         <item name="android:windowNoTitle">true</item>
@@ -39,7 +47,7 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
-    <style name="MyAnim">
+    <style name="MyAnim" parent="@android:style/Theme.Light.NoTitleBar">
         <item name="android:windowAnimationStyle">@style/AnimBottom</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFrame">@null</item>
@@ -61,6 +69,15 @@
         <!-- 背景透明 -->
         <item name="android:windowBackground">@android:color/transparent</item>
         <!-- 模糊 -->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="MyAnim2" parent="@android:style/Theme.Light.NoTitleBar">
+        <item name="android:windowAnimationStyle">@style/AnimBottom2</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/background_light</item>
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
