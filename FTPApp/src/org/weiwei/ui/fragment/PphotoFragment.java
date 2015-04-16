@@ -171,10 +171,8 @@ public class PphotoFragment extends Fragment{
 			task.setLocalFilename(url); 
 			task.setTaskName(p.getName());
 			task.setFilesize(p.getFilesize());
+			task.setTaskState(Task.TASK_STATE_READY);
 			taskList.add(task);
-			//根据remote 和local 查找数据库是否存在
-			//存在则读取该任务并根据数据库构造task,其中关键是finished
-			//不存在则插入数据
 		}
 		if(myApp.getUser()!=null){
 			new FTPHelper(myApp).uploadTasks(taskList, myApp.getUser());

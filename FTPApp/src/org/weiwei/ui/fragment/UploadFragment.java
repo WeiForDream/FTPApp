@@ -5,6 +5,7 @@ import org.weiwei.model.User;
 import org.weiwei.service.CoreService;
 import org.weiwei.ui.activity.R;
 import org.weiwei.ui.adapter.TransListAdapter;
+import org.weiwei.ui.view.EmptyLinearLayout;
 import org.weiwei.ui.view.PinnedHeaderListView;
 
 import android.os.Bundle;
@@ -36,6 +37,8 @@ public class UploadFragment extends Fragment{
 	private MyApplication myApp;
 	
 	private User user;
+	
+	private EmptyLinearLayout emptyLayout;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater,
@@ -68,6 +71,9 @@ public class UploadFragment extends Fragment{
 				
 			}
 		});	
+		
+		emptyLayout = (EmptyLinearLayout)view.findViewById(R.id.id_empty_layout);
+		emptyLayout.showEmpty(mAdapter.getmDatas().size()+mAdapter.getDoneList().size());
 	}
 	
 	@Override

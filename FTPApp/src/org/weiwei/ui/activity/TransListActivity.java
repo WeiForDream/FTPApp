@@ -7,7 +7,7 @@ import org.weiwei.application.MyApplication;
 import org.weiwei.model.User;
 import org.weiwei.service.CoreService;
 import org.weiwei.ui.adapter.MainAdapter;
-import org.weiwei.ui.fragment.DoneFragment;
+import org.weiwei.ui.fragment.HistoryFragment;
 import org.weiwei.ui.fragment.DownloadFragment;
 import org.weiwei.ui.fragment.UploadFragment;
 import org.weiwei.ui.view.MainViewPager;
@@ -100,7 +100,7 @@ public class TransListActivity extends FragmentActivity {
 		
 		DownloadFragment downFrag = new DownloadFragment();
 		UploadFragment upFrag = new UploadFragment();
-		DoneFragment doneFrag = new DoneFragment();
+		HistoryFragment doneFrag = new HistoryFragment();
 
 		mDatas = new ArrayList<Fragment>();
 		mDatas.add(downFrag);

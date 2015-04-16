@@ -159,8 +159,19 @@ public class TransListAdapter extends SectionedBaseAdapter {
 			// holder.image.setImageDrawable(mDatas.get(position).getImage());
 			Task task = mDatas.get(position);
 			holder.filename.setText(task.getTaskName());
-			holder.filesize.setText(StringUtils.formatByte(task.getFilesize()));
-			holder.state.setText(getTaskState(Task.TASK_STATE_GOING));
+			String fs = StringUtils.formatByte(task.getFilesize()); //预计下载
+			String done = StringUtils.formatByte(task.getDone());//已经下载
+			holder.filesize.setText(done+"/"+fs);
+			//根据task的状态来重绘state和progress的信息
+			switch(task.getTaskState()){
+			case Task.TASK_STATE_GOING:
+				holder.state.setText(getTaskState(Task.TASK_STATE_GOING));
+				break;
+			case Task.TASK_STATE_PAUSE:
+				holder.state.setText(getTaskState(Task.TASK_STATE_PAUSE));
+				break;
+			}
+			holder.progress.setCenterImage(task.getTaskState());
 			holder.progress.setProgress(task.getProgressValue());
 			holder.progress.setCProListener(new CPListener(holder, task));
 		} else if (section == 1) {
@@ -236,8 +247,11 @@ public class TransListAdapter extends SectionedBaseAdapter {
 		View view = listView.getChildAt(offset); // 要注意判断越界错误
 		TransListViewHolder holder = (TransListViewHolder) view.getTag();
 		holder.filename.setText(task.getTaskName());
-		holder.filesize.setText(StringUtils.formatByte(task.getFilesize()));
+		String fs = StringUtils.formatByte(task.getFilesize()); //预计下载
+		String done = StringUtils.formatByte(task.getDone());//已经下载
+		holder.filesize.setText(done+"/"+fs);
 		holder.progress.setProgress(progressValue);
+		holder.progress.setCenterImage(task.getTaskState());
 		holder.state.setText(getTaskState(task.getTaskState()));
 		if (progressValue >= 100) {
 			DoneList.add(task);// 将完成的任务移动到完成队列
@@ -368,4 +382,21 @@ public class TransListAdapter extends SectionedBaseAdapter {
 
 	}
 
+	public List<Task> getmDatas() {
+		return mDatas;
+	}
+
+	public void setmDatas(List<Task> mDatas) {
+		this.mDatas = mDatas;
+	}
+
+	public List<Task> getDoneList() {
+		return DoneList;
+	}
+
+	public void setDoneList(List<Task> doneList) {
+		DoneList = doneList;
+	}
+
+	
 }

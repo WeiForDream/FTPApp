@@ -7,6 +7,7 @@ import org.weiwei.model.User;
 import org.weiwei.service.CoreService;
 import org.weiwei.ui.activity.R;
 import org.weiwei.ui.adapter.FileListAdapter;
+import org.weiwei.ui.view.EmptyLinearLayout;
 import org.weiwei.ui.view.PathBar;
 import org.weiwei.utils.MediaUtils;
 import org.weiwei.utils.StringUtils;
@@ -37,6 +38,8 @@ public class FTotalFragment extends Fragment {
 	private CoreService coreService;
 	
 	private MyApplication myApp;
+	
+	private EmptyLinearLayout emptyLayout;
 	
 	private User user;
 	/**
@@ -69,6 +72,13 @@ public class FTotalFragment extends Fragment {
 	}
 
 	public void initView() {
+		//初始化空页面
+		emptyLayout = (EmptyLinearLayout) view.findViewById(R.id.id_empty_layout);
+		emptyLayout.setImage(R.drawable.empty_file);
+		emptyLayout.setText("此文件夹为空");
+		emptyLayout.setVisibility(View.GONE);
+		
+		
 		pathBar = (PathBar) view.findViewById(R.id.id_fragment_file_list_path_bar);
 		mFileList = (ListView) view.findViewById(R.id.id_fragment_file_list_lv);
 		mFileAdapter = new FileListAdapter(getActivity());
@@ -87,7 +97,9 @@ public class FTotalFragment extends Fragment {
 					mFileAdapter.notifyDataSetChanged(); // 更新数据
 					String path = currentFileList[position].getAbsolutePath();// 获取绝对路径
 					refreshPathBar(path);
+					emptyLayout.showEmpty(mFileAdapter.getmDatas().length);//根据数据数展示空页面
 				}
+				
 			}
 		});
 
@@ -103,8 +115,8 @@ public class FTotalFragment extends Fragment {
 		File parent = currentFile.getParentFile();//当前文件夹的父文件夹
 		
 		mFileAdapter.setFile(parent);//更改当前目录为原文件的父目录
-		
 		mFileAdapter.notifyDataSetChanged();
+		emptyLayout.showEmpty(mFileAdapter.getmDatas().length); //
 		refreshPathBar(parent.getAbsolutePath());
 
 	}
@@ -124,5 +136,5 @@ public class FTotalFragment extends Fragment {
 		pathBar.setmDatas(StringUtils.getImageDir(path));
 		pathBar.notifyDataChanged();
 	}
-	
+		
 }

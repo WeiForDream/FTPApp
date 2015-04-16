@@ -5,6 +5,7 @@ import org.weiwei.model.User;
 import org.weiwei.service.CoreService;
 import org.weiwei.ui.activity.R;
 import org.weiwei.ui.adapter.TransListAdapter;
+import org.weiwei.ui.view.EmptyLinearLayout;
 import org.weiwei.ui.view.PinnedHeaderListView;
 import org.weiwei.ui.view.PinnedHeaderListView.PinnedSectionedHeaderAdapter;
 
@@ -37,6 +38,8 @@ public class DownloadFragment extends Fragment{
 	
 	private User user;
 	
+	private EmptyLinearLayout emptyLayout;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -52,7 +55,7 @@ public class DownloadFragment extends Fragment{
 		user = myApp.getUser();
 	}
 	
-	private void initView(){
+	private void initView(){		
 		mListView = (ListView) view.findViewById(R.id.id_fragment_download_lv);
 		mAdapter = new TransListAdapter(getActivity(),myApp, TransListAdapter.TRAN_LIST_DOWN);
 		mAdapter.setListView(mListView);
@@ -69,13 +72,16 @@ public class DownloadFragment extends Fragment{
 			}
 		});
 		
+		emptyLayout = (EmptyLinearLayout)view.findViewById(R.id.id_empty_layout);
+		emptyLayout.showEmpty(mAdapter.getmDatas().size()+mAdapter.getDoneList().size());
+		
+		
 	}
 
 	@Override
 	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		Log.i("Download", "onResume");
 		mAdapter.resetList();
 	}
 	

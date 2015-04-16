@@ -13,8 +13,7 @@ public class MyApplication extends Application{
 	 */
 	private boolean isLogin = false;//标示当前是否登录服务器
 	/**
-	 * 当前的用户,即当期登录的服务器
-	 * 为空代表当前未登录
+	 * 当前的用户,即当前登录的服务器
 	 */
 	private User user;
 	

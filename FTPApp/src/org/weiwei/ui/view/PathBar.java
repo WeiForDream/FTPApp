@@ -41,6 +41,10 @@ public class PathBar extends LinearLayout{
 	 * 滚动条布局
 	 */
 	private LinearLayout mDirBar;
+	/**
+	 * 左标题名
+	 */
+	private TextView leftTitle;
 	
 	private Context context;
 	
@@ -95,7 +99,7 @@ public class PathBar extends LinearLayout{
 
 		mHScrollView.addView(mDirBar);
 		
-		TextView leftTitle = new TextView(context);
+		leftTitle = new TextView(context);
 		leftTitle.setText(leftTitleText);
 		leftTitle.setTextColor(getResources().getColor(R.color.black));
 
@@ -191,6 +195,7 @@ public class PathBar extends LinearLayout{
 
 	public void setLeftTitleText(String leftTitleText) {
 		this.leftTitleText = leftTitleText;
+		leftTitle.setText(leftTitleText);
 	}
 	
 	/**

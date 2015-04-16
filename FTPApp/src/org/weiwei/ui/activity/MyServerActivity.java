@@ -17,15 +17,14 @@ import org.weiwei.ftp.exception.FTPListParseException;
 import org.weiwei.model.Task;
 import org.weiwei.model.User;
 import org.weiwei.ui.adapter.ServerFilesAdapter;
-import org.weiwei.ui.fragment.FTotalFragment;
-import org.weiwei.ui.fragment.FileFragment;
+import org.weiwei.ui.view.EmptyLinearLayout;
 import org.weiwei.ui.view.PathBar;
 import org.weiwei.ui.view.TopBar;
 import org.weiwei.ui.view.TopBar.topbarClickListener;
 import org.weiwei.utils.FTPFileUtils;
 
-import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -82,6 +81,10 @@ public class MyServerActivity extends Activity {
 	 * 隐藏菜单按钮
 	 */
 	private RelativeLayout downLayout;
+	/**
+	 * 空页面展示
+	 */
+	private EmptyLinearLayout emptyLayout;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +107,8 @@ public class MyServerActivity extends Activity {
 		mTopBar.setOnTopBarClickListener(new topbarClickListener() {
 			@Override
 			public void rightClick() {
-
+				Intent intent = new Intent(MyServerActivity.this,ServerMsgActivity.class);
+				startActivity(intent);
 			}
 
 			@Override
@@ -117,6 +121,9 @@ public class MyServerActivity extends Activity {
 		mPathBar = (PathBar) findViewById(R.id.id_my_server_path_bar);
 		mPathBar.setLeftTitleText("远程存储");
 		initHideMenu();
+		emptyLayout = (EmptyLinearLayout) findViewById(R.id.id_empty_layout);
+		emptyLayout.setVisibility(View.GONE);
+		
 	}
 
 	/**
@@ -170,8 +177,13 @@ public class MyServerActivity extends Activity {
 				// 点击后进入下一个文件夹,这里要进行一次网络访问
 				FTPFile file = mFileAdapter.getFTPFile(position);
 				// 点击的是文件夹,则进行文件夹切换操作（网络请求）
-				if (file != null && file.getType() == FTPFile.TYPE_DIRECTORY) {
-					new ListTask().execute(file.getName());
+				if (file != null) {
+					if(file.getType() == FTPFile.TYPE_DIRECTORY){
+						new ListTask().execute(file.getName());
+					}else if(file.getType()==FTPFile.TYPE_FILE){
+						Intent intent = new Intent(MyServerActivity.this,OperationActivity.class);
+						startActivity(intent);
+					}
 				}
 			}
 		});
@@ -220,6 +232,19 @@ public class MyServerActivity extends Activity {
 	private class ListTask extends AsyncTask<String, Void, FTPFile[]> {
 		String currentPath = null;
 		String resultMessage = null; //返回的结果
+		
+		
+		
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			emptyLayout.setAnimImage(R.anim.loding_page);
+			emptyLayout.setText("正在加载中...");
+			emptyLayout.setVisibility(View.VISIBLE);
+			mFileList.setVisibility(View.GONE);
+		}
+
 		@Override
 		protected FTPFile[] doInBackground(String... params) {
 			FTPFile[] files = null;// 远程文件
@@ -280,11 +305,18 @@ public class MyServerActivity extends Activity {
 				mFileAdapter.notifyDataSetChanged();
 				// 这里要更新路径条
 				mPathBar.notifyDataChanged(currentPath.split("/"));
+				if(mFileAdapter.getmDatas().length<=0){
+					emptyLayout.setImage(R.drawable.empty_file);
+					emptyLayout.setText("该文件夹为空");
+					emptyLayout.setVisibility(View.VISIBLE);
+					return;
+				}
 				//切换文件夹以后
 			} else {
 				showMessage(resultMessage); 
 			}
-
+			emptyLayout.setVisibility(View.GONE);
+			mFileList.setVisibility(View.VISIBLE);
 		}
 
 		@Override

@@ -10,8 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         weiwei:leftBackground="@drawable/back_click"
+        weiwei:rightBackground="@drawable/btn_right_more"
         weiwei:lineBackground="@color/grey"
-        weiwei:lineHeight="1dp"
+        weiwei:lineHeight="0.5dp"
         weiwei:title="我的服务器"
         weiwei:titleTextColor="#000"
         weiwei:titleTextSize="11sp" >
@@ -25,18 +26,29 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="0.5dp"
         android:background="@color/grey" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <ListView
-            android:id="@+id/id_activity_my_server_lv"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
-        </ListView>
+
+            <ListView
+                android:id="@+id/id_activity_my_server_lv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+            </ListView>
+
+            <org.weiwei.ui.view.EmptyLinearLayout
+                android:id="@+id/id_empty_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+            </org.weiwei.ui.view.EmptyLinearLayout>
+        </FrameLayout>
 
         <LinearLayout
             android:id="@+id/id_activity_my_server_hide_menu"

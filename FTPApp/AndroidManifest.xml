@@ -84,6 +84,11 @@
             android:label="@string/title_activity_login"
             android:theme="@style/MyAnim2" >
         </activity>
+        <activity
+            android:name=".ServerMsgActivity"
+            android:label="@string/title_activity_server_msg"
+            android:theme="@style/MyAnim2" >
+        </activity>
     </application>
 
 </manifest>

@@ -10,7 +10,7 @@
         android:layout_height="50dp"
         weiwei:leftBackground="@drawable/back_click"
         weiwei:lineBackground="@color/grey"
-        weiwei:lineHeight="1dp"
+        weiwei:lineHeight="0.5dp"
         weiwei:title="登录服务器"
         weiwei:titleTextColor="#000"
         weiwei:titleTextSize="11sp" >
@@ -51,7 +51,7 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:singleLine="true"
-                android:text="113.54.153.125"
+                android:text="113.54.152.85"
                 android:textColor="@color/black" >
             </EditText>
         </TableRow>

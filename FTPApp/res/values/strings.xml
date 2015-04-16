@@ -41,5 +41,6 @@
     <string name="title_activity_splash">SplashActivity</string>
     <string name="title_activity_my_server">MyServerActivity</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_server_msg">ServerMsgActivity</string>
 
 </resources>

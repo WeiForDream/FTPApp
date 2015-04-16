@@ -1,5 +1,6 @@
 package org.weiwei.ui.view;
 
+import org.weiwei.model.Task;
 import org.weiwei.ui.activity.R;
 
 import android.content.Context;
@@ -38,6 +39,11 @@ public class CirProgressLayout extends FrameLayout {
 	 * 中心的图片
 	 */
 	private ImageView centerImage;
+	
+	/**
+	 * 停止标示符
+	 */
+	boolean stop = false;
 
 	/**
 	 * 进度条控件
@@ -99,7 +105,6 @@ public class CirProgressLayout extends FrameLayout {
 
 		//设置点击监听器
 		centerImage.setOnClickListener(new OnClickListener() {
-			boolean stop = false;
 			@Override
 			public void onClick(View v) {
 				if(stop){
@@ -158,5 +163,18 @@ public class CirProgressLayout extends FrameLayout {
 
 	public void setProgress(int progress){
 		cirProgress.setProgress(progress);
+	}
+	
+	public void setCenterImage(int state){
+		switch(state){
+		case Task.TASK_STATE_GOING:
+			stop = false;
+			centerImage.setImageDrawable(centerIcon);
+			break;
+		case Task.TASK_STATE_PAUSE:
+			stop = true;
+			centerImage.setImageDrawable(stopIcon); //停止
+			break;
+		}
 	}
 }

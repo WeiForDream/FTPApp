@@ -4,10 +4,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <org.weiwei.ui.view.PinnedHeaderListView
-        android:id="@+id/id_fragment_upload_lv"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
-    </org.weiwei.ui.view.PinnedHeaderListView>
+
+        <org.weiwei.ui.view.PinnedHeaderListView
+            android:id="@+id/id_fragment_upload_lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </org.weiwei.ui.view.PinnedHeaderListView>
+
+        <org.weiwei.ui.view.EmptyLinearLayout
+            android:id="@+id/id_empty_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        </org.weiwei.ui.view.EmptyLinearLayout>
+    </FrameLayout>
 
 </LinearLayout>

@@ -111,7 +111,7 @@ public class TopBar extends RelativeLayout {
 				ViewGroup.LayoutParams.WRAP_CONTENT);
 		rightParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, TRUE);
 		rightParams.addRule(RelativeLayout.CENTER_VERTICAL,TRUE);
-		rightParams.setMargins(0, 0, 20, 0);
+		rightParams.setMargins(0, 0, 10, 0);
 		addView(rightLayout, rightParams);
 
 		titleParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,

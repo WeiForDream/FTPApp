@@ -91,21 +91,21 @@ public class DLThread implements Runnable,BaseThread, FTPDataTransferListener {
 //				user.getTaskList().add(task);
 
 			} catch (IllegalStateException e) {
-
+				e.printStackTrace();
 			} catch (FileNotFoundException e) {
-
+				e.printStackTrace();
 			} catch (IOException e) {
-
+				e.printStackTrace();
 			} catch (FTPIllegalReplyException e) {
-
+				e.printStackTrace();
 			} catch (FTPException e) {
-
+				e.printStackTrace();
 			} catch (FTPDataTransferException e) {
-
+				e.printStackTrace();
 			} catch (FTPAbortedException e) {
 				//断点续传的关键
 				//会先执行Listener的aborted方法,然后再跳转到该方法来
-				
+				e.printStackTrace();
 			}finally{
 				
 			}
